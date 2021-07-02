@@ -1,4 +1,4 @@
-package com.github.gabrielpadilh4.personapi.dto;
+package com.github.gabrielpadilh4.personapi.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
