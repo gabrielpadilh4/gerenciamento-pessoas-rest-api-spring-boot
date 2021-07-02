@@ -6,6 +6,7 @@ import com.github.gabrielpadilh4.personapi.entity.Person;
 import com.github.gabrielpadilh4.personapi.exception.PersonNotFoundException;
 import com.github.gabrielpadilh4.personapi.mapper.PersonMapper;
 import com.github.gabrielpadilh4.personapi.repository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService {
 
     PersonRepository personRepository;
 
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     public MessageResponseDTO createPerson(PersonDTO personDTO) {
 
