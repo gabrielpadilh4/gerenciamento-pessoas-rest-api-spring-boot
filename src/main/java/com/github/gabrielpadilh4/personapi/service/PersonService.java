@@ -3,6 +3,7 @@ package com.github.gabrielpadilh4.personapi.service;
 import com.github.gabrielpadilh4.personapi.dto.request.PersonDTO;
 import com.github.gabrielpadilh4.personapi.dto.response.MessageResponseDTO;
 import com.github.gabrielpadilh4.personapi.entity.Person;
+import com.github.gabrielpadilh4.personapi.exception.PersonNotFoundException;
 import com.github.gabrielpadilh4.personapi.mapper.PersonMapper;
 import com.github.gabrielpadilh4.personapi.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,11 @@ public class PersonService {
         return allPeople.stream()
                 .map(personMapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PersonDTO findById(long id) throws PersonNotFoundException {
+        Person person = personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(id));
+
+        return personMapper.toDTO(person);
     }
 }
